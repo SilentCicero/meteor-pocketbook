@@ -1,18 +1,18 @@
 ## Synopsis
 
-A mini-wallet for MeteorJS dApps.
+A mini-wallet for Meteor Ethereum dApps.
+
+<img src="screen.png" />
 
 ## About
 
-While we wait for the Ethereum browsers and network to come into complete maturity, there is a need to house a mini ethereum wallet within our dApps. This is to do basic Ethereum account management in the browser. A primary use case would be, running an ethereum node, then connecting, through RPC, that node to your dApp hosted on a domain.
-
-PocketBook provides your MeteorJS dApp with a simple and easy-to-use  Ethereum mini-wallet. PocketBook is equip with a browser-based Ethereum account management system (built with <a href="http://github.com/silentcicero/ethereumjs-accounts">ethereumjs-accounts</a>).
+PocketBook provides MeteorJS dApp's with a simple and easy-to-use  Ethereum mini-wallet. 
 
 Please note that this Meteor module is still in Alpha. The security status of this module is still unknown and must still be vetted by trusted third-parties before production use.
 
 ## Hosted Alpha
 
-<a href="http://meter-pocketbook.meteor.com">http://meter-pocketbook.meteor.com</a>
+<a href="http://meteor-pocketbook.meteor.com">http://meteor-pocketbook.meteor.com</a>
 
 ## Install
 
