@@ -1,0 +1,80 @@
+.pocketbook {
+    .text-overflow() {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    
+    &.container {
+    }
+    
+    .list-pocketbook-nav {
+        .list-group-item {
+            border: none;   
+        }
+        
+        margin-top: 20px;
+        
+        margin-bottom: 40px;
+    }
+    
+    .pocketbook-header{
+        margin-bottom: 0px;
+    }
+    
+    @media (max-width: 795px) {
+        .pocketbook-account-address {
+            width: 150px;
+            
+            overflow: hidden;
+        }
+    }
+    
+    @media (max-width: 500px) {
+        .pocketbook-account-address {
+            width: 100px;
+            
+            overflow: hidden;
+        }
+    }
+    
+    .pocketbook-account-address {
+        .text-overflow();
+    }
+    
+    .pocketbook-subheader {
+    }
+    
+    .pocketbook-account-header {
+        margin-bottom: 20px;
+    }
+    
+    .pocketbook-footer {
+        margin-top: 100px;
+    }
+    
+    .list-pocketbook-account {
+        padding: 20px;
+        
+        cursor: pointer;
+        
+        &.selected {
+            background-color: #F1F1F1;
+        }
+        
+        h3 {
+            padding-top: 0px;
+            
+            margin-top: 0px;
+        }
+        
+        .btn {
+            margin-top: 10px;
+            
+            padding: 15px;
+            
+            text-transform: uppercase;
+        }
+    }
+};

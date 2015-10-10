@@ -1,0 +1,140 @@
+<template name="views_pocketbook">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    
+    <div class="pocketbook container">
+        <h2 class="pocketbook-header">
+            <small class="glyphicon glyphicon-credit-card"></small>
+            PocketBook
+        </h2>
+        <small class="pocketbook-subheader text-muted">
+            For managing Ethereum accounts in browser.
+        </small>
+        
+        <br />
+        
+        <ul class="list-group list-pocketbook-nav list-inline">
+            {{#if options.canCreate}}
+            <li class="list-group-item">
+                <button class="btn btn-default 
+                               btn-pocketbook-new">
+                    New Account
+                </button>
+            </li>
+            {{/if}}
+            
+            {{#if options.canBackup}}
+            <li class="list-group-item">
+                <button class="btn btn-default 
+                               btn-pocketbook-backup">
+                    Backup
+                </button>
+            </li>
+            {{/if}}
+            
+            <!--
+            {{#if options.canImport}}
+            <li class="list-group-item">
+                <button class="btn btn-default 
+btn-pocketbook-import">
+                    Import
+                </button>
+            </li>
+            {{/if}}
+
+            {{#if options.canExport}}
+            <li class="list-group-item">
+                <button class="btn btn-default 
+btn-pocketbook-export">
+                    Export
+                </button>
+            </li>
+            {{/if}}
+            -->
+            {{#if options.canClear}}
+            <li class="list-group-item">
+                <button class="btn btn-default 
+                               btn-pocketbook-clear">
+                    Clear All
+                </button>
+            </li>
+            {{/if}}
+        </ul>
+        
+        <h3 class="pocketbook-accounts-header">
+            Browser Accounts
+        </h3>
+        
+        <ul class="list-group list-pocketbook">
+        {{#each accounts}}
+            <li class="list-group-item row list-pocketbook-account
+                        {{#if isSelected address}}selected{{/if}}"
+                data-address="{{address}}">
+                <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1
+                            pocketbook-account-identicon">
+                    {{> dapp_identicon identity=address class="dapp-normal"}}
+                </div>
+                <div class="col-xs-5 col-sm-6 col-md-7 col-lg-7
+                            pocketbook-account-body">
+                    <h3 class="pocketbook-account-header">
+                        {{> components_pocketbookToName address}}
+
+                        {{#if encrypted}}
+                            <small class="glyphicon glyphicon-lock">
+                            </small>
+                        {{/if}}
+                    </h3>
+
+                    <footer class="pocketbook-account-footer">
+                        <small class="pocketbook-account-address">
+                            {{address}}
+                        </small>
+                        
+                        {{#if isSelected address}}
+                        <small class="pocketbook-account-selected">
+                            - selected
+                        </small>
+                        {{/if}}
+                    </footer>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2
+                            pocketbook-account-faucet">
+                    {{#if options.canFaucet}}
+                    <button class="btn btn-default 
+                                   btn-pocketbook-faucet">
+                        <span class="hidden-xs">
+                            Faucet
+                        </span>
+                        <i class="visible-xs glyphicon 
+                                  glyphicon-plus"></i>
+                    </button>
+                    {{/if}}
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2
+                            pocketbook-account-remove">
+                    {{#if options.canRemove}}
+                    <button class="btn btn-default 
+                                   btn-pocketbook-remove">
+                        <span class="hidden-xs">
+                            Remove
+                        </span>
+                        <i class="visible-xs glyphicon 
+                                  glyphicon-remove"></i>
+                    </button>
+                    {{/if}}
+                </div>
+            </li>
+        {{/each}}
+        </ul>
+        
+        <footer class="pocketbook-footer text-right">
+            <small class="text-muted">
+            built with
+            </small>
+            <br />
+            <a href="http://github.com/silentcicero/ethereumjs-accounts"
+               target="_blank">
+                <small>ethereumjs-accounts</small>
+            </a>
+        </footer>
+    </div>
+</template>

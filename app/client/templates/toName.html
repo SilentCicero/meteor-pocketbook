@@ -1,0 +1,9 @@
+<template name="components_pocketbookToName">
+    {{#if TemplateVar.get 'name'}}
+        {{> TemplateVar.get 'name'}}
+    {{else}}
+        Unknown
+    {{/if}}
+    
+    {{load}}
+</template>
