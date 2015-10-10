@@ -16,7 +16,7 @@ Please note that this Meteor module is still in Alpha. The security status of th
 
 ## Install
 
-    $ meteor install silentcicero:meteor-pocketbook
+    $ meteor add silentcicero:meteor-pocketbook
     
 ## Usage
 
