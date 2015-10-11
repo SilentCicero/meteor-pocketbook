@@ -1,7 +1,7 @@
 Package.describe({
   name: 'silentcicero:meteor-pocketbook',
   summary: 'A Mini-Wallet for Meteor dApps',
-  version: '0.0.1',
+  version: '0.0.5',
   git: 'http://github.com/SilentCicero/meteor-pocketbook'
 });
 
@@ -11,9 +11,8 @@ Package.onUse(function(api) {
   api.use('jquery', 'client');
   api.use('templating', 'client');
   api.use('reactive-var', 'client');
-  api.use('less', 'client');
+  api.use('less', 'client');  
   api.use('standard-minifiers', 'client');
-  api.use('iron:router@0.0.12', 'client');
 
   api.use('alexvandesande:identicon@1.0.1', 'client');
   api.use('3stack:bignumber@2.0.0', 'client');
@@ -27,15 +26,12 @@ Package.onUse(function(api) {
   api.use('frozeman:template-var@1.1.1', 'client');
   api.imply('frozeman:template-var@1.1.1', 'client');
 
-
   api.export(['PocketBook'], 'client');
 
-
-  api.addFiles('client/lib/pocketbookConfig.js', 'client');
-  api.addFiles('client/stylesheets/pocketbook.less', 'client');
-  api.addFiles('client/templates/pocketbook.html', 'client');
-  api.addFiles('client/templates/pocketbook.js', 'client');
-  api.addFiles('client/templates/toName.html', 'client');
-  api.addFiles('client/templates/toName.js', 'client');
-  api.addFiles('client/routes.js', 'client');
+  api.addFiles('lib/pocketbookConfig.js', 'client');
+  api.addFiles('pocketbook.less', 'client');
+  api.addFiles('pocketbook.html', 'client');
+  api.addFiles('pocketbook.js', 'client');
+  api.addFiles('toName.html', 'client');
+  api.addFiles('toName.js', 'client');
 });
