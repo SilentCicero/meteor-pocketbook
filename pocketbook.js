@@ -18,7 +18,7 @@ var accounts,
                     return;
                 
                 var balances = TemplateVar.get(template, 'balances');
-                balances[address] = result.toNumber(10);
+                balances[account.address] = result.toNumber(10);
                 TemplateVar.set(template, 'balances', balances);
             }));
         });
@@ -212,7 +212,7 @@ Template['views_pocketbook'].helpers({
     'getBalance': function(address){
         var balances = TemplateVar.get('balances');
         
-        return web3.eth.fromWei(balances[address], PocketBook.options.etherUnit);
+        return web3.fromWei(balances[address], PocketBook.options.etherUnit);
     },
     
     /**
