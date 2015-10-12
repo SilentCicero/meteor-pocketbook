@@ -25,9 +25,7 @@ var accounts,
         
         try{
             batch.execute();
-        }catch(e){
-            console.log(e);
-        }
+        }catch(e){}
     };
 
 /**
@@ -59,6 +57,7 @@ Template['views_pocketbook'].onRendered(function(){
     if(accounts.length == 0)
         accounts.new();
     
+    // Check Balances option
     if(PocketBook.options.checkBalances)
         web3.eth.filter('latest').watch(checkLatestBlocks);
 });

@@ -52,7 +52,7 @@ reactive-var@1.0.6
 retry@1.0.4
 routepolicy@1.0.6
 silentcicero:ethereumjs-accounts@0.0.12
-silentcicero:meteor-pocketbook@0.0.8
+silentcicero:meteor-pocketbook@0.0.9
 spacebars@1.0.7
 spacebars-compiler@1.0.7
 standard-minifiers@1.0.1
