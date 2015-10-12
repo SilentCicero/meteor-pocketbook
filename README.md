@@ -105,13 +105,24 @@ PocketBook.Options({
     canSelect: true,
     canExport: true,
     canImport: true,
+    checkBalances: true,
     selectedAsDefault: true,
 });
 ```
+
+## Balances
+
+Balances are updated every block. You may shut off balance checking by turning off the `checkBalances` option, which is set to `true` by default.
         
 ## Bootstrap
 
 PocketBook contains classes that are Bootstrap 3.0 enabled. However, boostrap and custom CSS are also supported. Boostrap is not explicitly contained within PocketBook.
+
+To see PocketBook with it's Bootstrap layout quickly, paste this HTML into your code:
+
+```html
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+```
 
 ## CSS/LESS
 
@@ -127,6 +138,7 @@ PocketBook contains classes that are Bootstrap 3.0 enabled. However, boostrap an
         .pocketbook-account-header
         .pocketbook-account-body
             .pocketbook-account-address
+            .pocketbook-account-balance
             .pocketbook-account-selected
         .pocketbook-account-faucet
             .btn-pocketbook-faucet
@@ -143,6 +155,10 @@ All PocketBook names are stored in the `PocketBook.names` data object. Where `Po
 ## Signing Transactions (in-browser)
 
 Because PocketBook is built with ethereumjs-accounts, you may use the <a href="https://github.com/ConsenSys/hooked-web3-provider">HookedWeb3Provider</a> to do in-browser account signing with your PocketBook accounts.
+
+You can install the HookedWeb3Provider in meteor, by using my package here:
+
+    $ meteor add silentcicero:hooked-web3-provider
         
 ## Components
 

@@ -4,7 +4,31 @@ Template Controllers
 @module Templates
 */
 
-var accounts;
+var accounts,
+    template,
+    checkLatestBlocks = function(err, hash){
+        if(err)
+            return;
+        
+        var batch = web3.createBatch();
+        
+        _.each(accounts.list(), function(account, accountIndex){
+            batch.add(web3.eth.getBalance(account.address, function(err, result){
+                if(err)
+                    return;
+                
+                var balances = TemplateVar.get(template, 'balances');
+                balances[address] = result.toNumber(10);
+                TemplateVar.set(template, 'balances', balances);
+            }));
+        });
+        
+        try{
+            batch.execute();
+        }catch(e){
+            console.log(e);
+        }
+    };
 
 /**
 The pocketbook view template
@@ -19,6 +43,13 @@ Template['views_pocketbook'].onCreated(function(){
     else
         accounts = PocketBook.objects.accounts;
     
+    // Set template
+    template = this;
+    
+    // Setup Balances
+    TemplateVar.set('balances', {});
+    
+    // Set Default web3 Account
     if(PocketBook.options.selectedAsDefault)
         web3.eth.defaultAccount = accounts.get('selected');
 });
@@ -27,6 +58,9 @@ Template['views_pocketbook'].onRendered(function(){
     // setup one unsecure account if no exist
     if(accounts.length == 0)
         accounts.new();
+    
+    if(PocketBook.options.checkBalances)
+        web3.eth.filter('latest').watch(checkLatestBlocks);
 });
 
 Template['views_pocketbook'].events({
@@ -167,6 +201,18 @@ Template['views_pocketbook'].helpers({
 
     'accounts': function(){
         return accounts.list();   
+    },
+    
+    /**
+    Get PocketBook settings
+
+    @method (options)
+    */
+
+    'getBalance': function(address){
+        var balances = TemplateVar.get('balances');
+        
+        return web3.eth.fromWei(balances[address], PocketBook.options.etherUnit);
     },
     
     /**

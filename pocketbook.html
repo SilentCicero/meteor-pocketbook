@@ -87,6 +87,13 @@ btn-pocketbook-export">
                             {{address}}
                         </small>
                         
+                        {{#if options.checkBalances}}
+                        <small class="pocketbook-account-balance">
+                            {{getBalance address}}
+                            {{options.etherUnit}}
+                        </small>
+                        {{/if}}
+                        
                         {{#if isSelected address}}
                         <small class="pocketbook-account-selected">
                             - selected
