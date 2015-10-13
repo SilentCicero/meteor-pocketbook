@@ -105,14 +105,23 @@ PocketBook.Options({
     canSelect: true,
     canExport: true,
     canImport: true,
+    nodeAccounts: true,
     checkBalances: true,
     selectedAsDefault: true,
+    canNodeSelect: true,
+    canBrowserSelect: true,
 });
 ```
 
 ## Balances
 
 Balances are updated every block. You may shut off balance checking by turning off the `checkBalances` option, which is set to `true` by default.
+
+## Accounts (Node/Browser)
+
+PocketBook can load both the available (geth/cpp) node and in-browser accounts. You can disable loading and displaying node accounts by setting the PocketBook option `nodeAccounts` to `false`.
+
+The selected account will be stored in persistent browser local storage. Using ethereumjs-accounts `selected` feature.
         
 ## Bootstrap
 
@@ -133,6 +142,9 @@ To see PocketBook with it's Bootstrap layout quickly, paste this HTML into your 
     .pocketbook-subheader
     .list-pocketbook-nav
         .list-group-item
+    .pocketbook-accounts-header
+    .pocketbook-accounts-header-node
+    .pocketbook-accounts-header-browser
     .list-pocketbook-account
         &.selected
         .pocketbook-account-header

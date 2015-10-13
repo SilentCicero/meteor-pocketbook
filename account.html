@@ -1,0 +1,77 @@
+<template name="components_pocketbookAccount">
+    <li class="list-group-item row list-pocketbook-account
+              {{#if isSelected address}}selected{{/if}}"
+        data-address="{{address}}">
+        <div class="col-xs-3 col-sm-2 col-md-1 col-lg-1
+                    pocketbook-account-identicon">
+            {{> dapp_identicon identity=address class="dapp-normal"}}
+        </div>
+        <div class="col-xs-5 col-sm-6 col-md-7 col-lg-7
+                    pocketbook-account-body">
+            <h3 class="pocketbook-account-header">
+                {{> components_pocketbookToName address}}
+
+                {{#if encrypted}}
+                    <small class="glyphicon glyphicon-lock">
+                    </small>
+                {{/if}}
+            </h3>
+
+            <div class="pocketbook-account-footer">
+                <small class="pocketbook-account-address">
+                    {{address}}
+                </small>
+
+                <br />
+
+                {{#if options.checkBalances}}
+                <small class="pocketbook-account-balance">
+                    <strong>
+                    {{#if getBalance address}}
+                        {{getBalance address}}
+                    {{else}}
+                        0
+                    {{/if}}
+                    </strong>
+                    {{options.etherUnit}}
+                </small>
+                {{/if}}
+
+                {{#if isSelected address}}
+                <small class="text-success
+                              pocketbook-account-selected">
+                    - selected
+                </small>
+                {{/if}}
+            </div>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2
+                    pocketbook-account-faucet">
+            {{#if options.canFaucet}}
+            <button class="btn btn-default 
+                           btn-pocketbook-faucet">
+                <span class="hidden-xs">
+                    Faucet
+                </span>
+                <i class="visible-xs glyphicon 
+                          glyphicon-plus"></i>
+            </button>
+            {{/if}}
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2
+                    pocketbook-account-remove">
+            {{#if options.canRemove}}
+                {{#if public}}
+                <button class="btn btn-default 
+                               btn-pocketbook-remove">
+                    <span class="hidden-xs">
+                        Remove
+                    </span>
+                    <i class="visible-xs glyphicon 
+                              glyphicon-remove"></i>
+                </button>
+                {{/if}}
+            {{/if}}
+        </div>
+    </li>
+</template>

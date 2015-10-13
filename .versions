@@ -21,9 +21,10 @@ diff-sequence@1.0.1
 ecmascript@0.1.5
 ecmascript-collections@0.1.6
 ejson@1.0.7
+ethereum:accounts@0.3.4
 ethereum:elements@0.5.3
 ethereum:tools@0.2.9
-ethereum:web3@0.12.2
+ethereum:web3@0.13.0
 frozeman:animation-helper@0.2.6
 frozeman:persistent-minimongo@0.1.6
 frozeman:storage@0.1.8
@@ -51,8 +52,8 @@ random@1.0.4
 reactive-var@1.0.6
 retry@1.0.4
 routepolicy@1.0.6
-silentcicero:ethereumjs-accounts@0.0.12
-silentcicero:meteor-pocketbook@0.0.9
+silentcicero:ethereumjs-accounts@0.0.15
+silentcicero:meteor-pocketbook@0.0.17
 spacebars@1.0.7
 spacebars-compiler@1.0.7
 standard-minifiers@1.0.1

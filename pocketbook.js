@@ -10,22 +10,25 @@ var accounts,
         if(err)
             return;
         
-        var batch = web3.createBatch();
+        var allAccounts = accounts.list(),
+            nodeAccounts = EthAccounts.find().fetch();
         
-        _.each(accounts.list(), function(account, accountIndex){
-            batch.add(web3.eth.getBalance(account.address, function(err, result){
+        // If node accounts is activated
+        if(PocketBook.options.nodeAccounts
+          && _.isArray(allAccounts)
+          && _.isArray(nodeAccounts))
+            allAccounts = allAccounts.concat(nodeAccounts);
+        
+        _.each(allAccounts, function(account, accountIndex){  
+            web3.eth.getBalance(account.address, function(err, result){
                 if(err)
                     return;
                 
-                var balances = TemplateVar.get(template, 'balances');
+                var balances = LocalStore.get('balances');
                 balances[account.address] = result.toNumber(10);
-                TemplateVar.set(template, 'balances', balances);
-            }));
+                LocalStore.set('balances', balances);
+            });
         });
-        
-        try{
-            batch.execute();
-        }catch(e){}
     };
 
 /**
@@ -45,7 +48,7 @@ Template['views_pocketbook'].onCreated(function(){
     template = this;
     
     // Setup Balances
-    TemplateVar.set('balances', {});
+    LocalStore.set('balances', {});
     
     // Set Default web3 Account
     if(PocketBook.options.selectedAsDefault)
@@ -56,6 +59,10 @@ Template['views_pocketbook'].onRendered(function(){
     // setup one unsecure account if no exist
     if(accounts.length == 0)
         accounts.new();
+    
+    // Setup Node Accounts
+    if(PocketBook.options.nodeAccounts)
+        EthAccounts.init();
     
     // Check Balances option
     if(PocketBook.options.checkBalances)
@@ -141,6 +148,17 @@ Template['views_pocketbook'].events({
         if(PocketBook.options.selectedAsDefault)
             web3.eth.defaultAccount = data.address;
         
+        var nodeAccounts = EthAccounts.find().fetch(),
+            browserAccounts = accounts.list();
+        
+        if(!PocketBook.options.canNodeSelect
+          && _.contains(nodeAccounts, data.address))
+            return;
+            
+        if(!PocketBook.options.canBrowserSelect
+          && _.contains(browserAccounts, data.address))
+            return;
+        
         accounts.select(data.address);
         PocketBook.callbacks.onSelect(data.address);
     },
@@ -193,45 +211,40 @@ Template['views_pocketbook'].events({
 
 Template['views_pocketbook'].helpers({
     /**
-    Get the name
+    Refresh the current wallet
 
-    @method (name)
+    @method (refresh)
     */
 
-    'accounts': function(){
-        return accounts.list();   
+    'refresh': function(){
+        checkLatestBlocks(null, '');  
     },
     
     /**
-    Get PocketBook settings
+    Get node accounts off of the connected geth or cpp node
 
-    @method (options)
+    @method (nodeAccounts)
     */
 
-    'getBalance': function(address){
-        var balances = TemplateVar.get('balances');
-        
-        return web3.fromWei(balances[address], PocketBook.options.etherUnit);
+    'nodeAccounts': function(){
+        return EthAccounts.find().fetch();
     },
     
     /**
-    Get PocketBook settings
+    Get the accounts stored in browser
 
-    @method (options)
+    @method (browserAccounts)
+    */
+
+    'browserAccounts': function(){
+        return accounts.list();
+    },
+    
+    /**
+    Get the options stored/set in PocketBook global
+
+    @object (options)
     */
 
     'options': PocketBook.options,
-    
-    /**
-    Get the name
-
-    @method (isSelected)
-    */
-
-    'isSelected': function(address){
-        var selected = accounts.get('selected');
-        
-        if(!_.isUndefined(selected))
-            return selected.address == address;
-    }
 });
