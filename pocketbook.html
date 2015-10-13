@@ -11,6 +11,7 @@
         <br />
         
         <ul class="list-group list-pocketbook-nav list-inline">
+        {{#if options.browserAccounts}}
             {{#if options.canCreate}}
             <li class="list-group-item">
                 <button class="btn btn-default 
@@ -19,7 +20,7 @@
                 </button>
             </li>
             {{/if}}
-            
+
             {{#if options.canBackup}}
             <li class="list-group-item">
                 <button class="btn btn-default 
@@ -28,7 +29,7 @@
                 </button>
             </li>
             {{/if}}
-            
+
             <!--
             {{#if options.canImport}}
             <li class="list-group-item">
@@ -56,31 +57,36 @@ btn-pocketbook-export">
                 </button>
             </li>
             {{/if}}
+        {{/if}}
         </ul>
         
-        <h3 class="pocketbook-accounts-header
-                   pocketbook-accounts-header-node">
-            Node Accounts
-        </h3>
+        {{#if options.nodeAccounts}}
+            <h3 class="pocketbook-accounts-header
+                       pocketbook-accounts-header-node">
+                Node Accounts
+            </h3>
+
+            <ul class="list-group list-pocketbook
+                       list-pocketbook-node">
+            {{#each nodeAccounts}}
+                {{> components_pocketbookAccount}}
+            {{/each}}
+            </ul>
+        {{/if}}
         
-        <ul class="list-group list-pocketbook
-                   list-pocketbook-node">
-        {{#each nodeAccounts}}
-            {{> components_pocketbookAccount}}
-        {{/each}}
-        </ul>
-        
-        <h3 class="pocketbook-accounts-header
-                   pocketbook-accounts-header-browser">
-            Browser Accounts
-        </h3>
-        
-        <ul class="list-group list-pocketbook
-                   list-pocketbook-browser">
-        {{#each browserAccounts}}
-            {{> components_pocketbookAccount}}
-        {{/each}}
-        </ul>
+        {{#if options.browserAccounts}}
+            <h3 class="pocketbook-accounts-header
+                       pocketbook-accounts-header-browser">
+                Browser Accounts
+            </h3>
+
+            <ul class="list-group list-pocketbook
+                       list-pocketbook-browser">
+            {{#each browserAccounts}}
+                {{> components_pocketbookAccount}}
+            {{/each}}
+            </ul>
+        {{/if}}
         
         <footer class="pocketbook-footer text-right">
             <small class="text-muted">

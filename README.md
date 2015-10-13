@@ -106,6 +106,7 @@ PocketBook.Options({
     canExport: true,
     canImport: true,
     nodeAccounts: true,
+    browserAccounts: true,
     checkBalances: true,
     selectedAsDefault: true,
     canNodeSelect: true,
