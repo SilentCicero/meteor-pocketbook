@@ -1,7 +1,7 @@
 Package.describe({
   name: 'silentcicero:meteor-pocketbook',
   summary: 'A Mini-Wallet for Meteor dApps',
-  version: '0.0.17',
+  version: '0.0.18',
   git: 'http://github.com/SilentCicero/meteor-pocketbook'
 });
 
